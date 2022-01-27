@@ -1,71 +1,62 @@
-import React, { Component } from 'react';
 import Card from './Card'
+import React, { useState } from 'react';
 import './Board.css'
 
-class Board extends Component {
-  constructor() {
-    super();
+function Board() {
+  const [marker, setMarker] = useState('x');
+  const [board, setBoard] = useState(['', '', '',
+                                      '', '', '',
+                                      '', '', ''])
 
-    this.state = {
-      marker: 'x',
-      board: ['', '', '',
-              '', '', '',
-              '', '', '']
+  const updateBoard = (index) => {
+    let newMarker = marker === 'o' ? 'x' : 'o',
+        newBoard  = board;
+    newBoard[index] = marker;
+
+    setMarker(newMarker);
+    setBoard(newBoard);
+    
+    const winner = checkWinner();
+
+    if (winner[0]) {
+      alert(`${winner[1]} won!`);
     }
-
-    this.updateBoard = this.updateBoard.bind(this);
-    this.checkWinner = this.checkWinner.bind(this);
   }
 
-  updateBoard(index) {
-    let newMarker = this.state.marker === 'o' ? 'x' : 'o',
-        newBoard  = this.state.board;
-    newBoard[index] = this.state.marker;
-
-    this.setState({
-      marker: newMarker,
-      board: newBoard
-    }) 
-    this.checkWinner();
-  }
-
-  checkWinner() {
-    const board = this.state.board;
+  const checkWinner = () => {
     for (let i = 0; i <= 6; i += 3) {
       if (board[i] === board[i + 1] && board[i] === board[i + 2] && board[i] !== '') {
-        return true;
+        return [true, board[i]];
       }
     }
 
     for (let i = 0; i <= 2; i++) {
       if  (board[i] === board[i + 3] && board[i] === board[i + 6] && board[i] !== '') {
-        return true;
+        return [true, board[i]];
       }
     }
 
     if ( (board[0] === board[4] && board[0] === board[8] && board[0] !== '') ||
          (board[2] === board[4] && board[2] === board[6] && board[2] !== '') ) {
-      return true;
+      return [true, board[4]];
     }    
   }
 
-  render() {
-    return (
-      <div className='board'>
-        <Card index='0' board={this.state.board} updateBoard={this.updateBoard} />
-        <Card index='1' board={this.state.board} updateBoard={this.updateBoard} />
-        <Card index='2' board={this.state.board} updateBoard={this.updateBoard} />
-     
-        <Card index='3' board={this.state.board} updateBoard={this.updateBoard} />
-        <Card index='4' board={this.state.board} updateBoard={this.updateBoard} />
-        <Card index='5' board={this.state.board} updateBoard={this.updateBoard} />
+  return (
+    <div className='board'>
+      <Card index='0' board={board} updateBoard={updateBoard} />
+      <Card index='1' board={board} updateBoard={updateBoard} />
+      <Card index='2' board={board} updateBoard={updateBoard} />
+   
+      <Card index='3' board={board} updateBoard={updateBoard} />
+      <Card index='4' board={board} updateBoard={updateBoard} />
+      <Card index='5' board={board} updateBoard={updateBoard} />
 
-        <Card index='6' board={this.state.board} updateBoard={this.updateBoard} />
-        <Card index='7' board={this.state.board} updateBoard={this.updateBoard} />
-        <Card index='8' board={this.state.board} updateBoard={this.updateBoard} />
-      </div>
-    );
-  }
+      <Card index='6' board={board} updateBoard={updateBoard} />
+      <Card index='7' board={board} updateBoard={updateBoard} />
+      <Card index='8' board={board} updateBoard={updateBoard} />
+    </div>
+  );
 }
 
 export default Board;

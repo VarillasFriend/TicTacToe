@@ -1,36 +1,24 @@
 import './Card.css'
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-class Card extends Component {
-  constructor(props) {
-    super(props);
+function Card(props) {
+  const [locked, setLocked] = useState(false);
 
-    this.state = {
-      locked: false
-    }
-
-    this.changeMarker = this.changeMarker.bind(this);
-  }
-
-  changeMarker() {
-    if (this.state.locked) {
+  const changeMarker = () => {
+    if (locked) {
       return;
     }
 
-    this.setState({
-      locked: true
-    })
+    setLocked(true);
 
-    this.props.updateBoard(this.props.index);
-  }
+    props.updateBoard(props.index);
+  };
 
-  render() {
-    return (
-      <div className='card' onClick={this.changeMarker}>
-        {this.props.board[this.props.index]}
-      </div>
-    );
-  }
+  return (
+    <div className='card' onClick={changeMarker}>
+      {props.board[props.index]}
+    </div>
+  );
 }
 
 export default Card;
