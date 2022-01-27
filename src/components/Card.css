@@ -1,0 +1,5 @@
+.card {
+  border-radius: 0.5rem;
+  background-color: hsl(220, 90%, 20%);
+  color: white;
+}
