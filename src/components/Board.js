@@ -16,10 +16,14 @@ function Board(props) {
     setMarker(newMarker);
     setBoard(newBoard);
     
-    const winner = checkWinner();
+    let winner = checkWinner();
 
     if (winner[0]) {
-      alert(`${winner[1] === 'x' ? props.firstPlayer.name : props.secondPlayer.name} won!`);
+      winner = winner[1] === 'x' ? props.firstPlayer : props.secondPlayer
+      props.incrementWins(winner);
+        
+      alert(`${winner.name} won!`)
+ 
       reset();
     }
   }

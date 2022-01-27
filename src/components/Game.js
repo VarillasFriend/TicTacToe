@@ -4,16 +4,25 @@ import Board from './Board';
 import PlayerForm from './PlayerForm'
 
 function Game()  {
-  const [firstPlayer, setFirstPlayer] = useState({ name: '', marker: 'x' }),
-        [secondPlayer, setSecondPlayer] = useState({ name: '', marker: 'o' });
+  const [firstPlayer, setFirstPlayer] = useState({ name: '', marker: 'x', wins: 0 }),
+        [secondPlayer, setSecondPlayer] = useState({ name: '', marker: 'o', wins: 0 });
 
   const setFirstPlayerName = (name) => {
-    setFirstPlayer({ name: name, marker: 'x' });
+    setFirstPlayer({ name: name, marker: 'x', wins: 0 });
   }
 
   const setSecondPlayerName = (name) => {
-    setSecondPlayer({ name: name, marker: 'o' });
+    setSecondPlayer({ name: name, marker: 'o', wins: 0 });
   }
+
+  const incrementWins = (player) => {
+    if (player === firstPlayer) {
+      setFirstPlayer({ name: firstPlayer.name, marker: 'x', wins: firstPlayer.wins + 1 })
+      return;
+    }
+
+    setSecondPlayer({name: secondPlayer.name, marker: 'o', wins: secondPlayer.wins + 1})
+  } 
 
   if (firstPlayer.name === '') {
     return <PlayerForm player={firstPlayer} setName={setFirstPlayerName} />;
@@ -22,7 +31,14 @@ function Game()  {
   }
 
   return (
-    <Board firstPlayer={firstPlayer} secondPlayer={secondPlayer} />
+    <div>
+      <div class='scoreboard'>
+        {firstPlayer.name + ': ' + firstPlayer.wins + ' | '} 
+        {secondPlayer.name + ': ' + secondPlayer.wins}
+      </div>
+
+      <Board firstPlayer={firstPlayer} secondPlayer={secondPlayer} incrementWins={incrementWins} />
+    </div>
   );
 }
 

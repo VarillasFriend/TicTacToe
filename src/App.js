@@ -4,7 +4,7 @@ import Title from './components/Title';
 
 function App()  {
   return(
-    <div class='App'>
+    <div className='App'>
       <Title />
 
       <Game />
