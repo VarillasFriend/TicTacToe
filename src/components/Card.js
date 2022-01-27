@@ -1,15 +1,10 @@
 import './Card.css'
-import React, { useState } from 'react';
 
 function Card(props) {
-  const [locked, setLocked] = useState(false);
-
   const changeMarker = () => {
-    if (locked) {
+    if (props.board[props.index] !== '') {
       return;
     }
-
-    setLocked(true);
 
     props.updateBoard(props.index);
   };
@@ -22,3 +17,4 @@ function Card(props) {
 }
 
 export default Card;
+

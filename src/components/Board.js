@@ -2,7 +2,7 @@ import Card from './Card'
 import React, { useState } from 'react';
 import './Board.css'
 
-function Board() {
+function Board(props) {
   const [marker, setMarker] = useState('x');
   const [board, setBoard] = useState(['', '', '',
                                       '', '', '',
@@ -19,7 +19,8 @@ function Board() {
     const winner = checkWinner();
 
     if (winner[0]) {
-      alert(`${winner[1]} won!`);
+      alert(`${winner[1] === 'x' ? props.firstPlayer.name : props.secondPlayer.name} won!`);
+      reset();
     }
   }
 
@@ -40,6 +41,13 @@ function Board() {
          (board[2] === board[4] && board[2] === board[6] && board[2] !== '') ) {
       return [true, board[4]];
     }    
+  }
+
+  const reset = () => {
+    setBoard(['', '', '',
+              '', '', '',
+              '', '', '']);
+    setMarker('x');
   }
 
   return (
