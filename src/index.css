@@ -7,5 +7,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: hsl(220, 90%, 6%);
   color: hsl(50, 100%, 90%);
+  font-size: 1.9rem;
 }
 

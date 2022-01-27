@@ -1,5 +1,6 @@
 .card {
-  border-radius: 0.5rem;
-  background-color: hsl(220, 90%, 20%);
+  border-radius: 0.8rem;
+  background-color: hsl(260, 30%, 40%);
   color: white;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
 }

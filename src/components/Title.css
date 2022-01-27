@@ -1,0 +1,23 @@
+.Title {
+  text-align: center;
+  font-size: 6rem;
+  font-weight: 400;
+  width: fit-content;
+  margin: 3rem auto 5rem auto;
+  display: flex;
+}
+
+.tic {
+  transform: translateX(3rem);
+  color: hsla(0, 90%, 70%, 70%);
+}
+
+.tac {
+  transform: translateY(3rem);
+  color: hsla(100, 100%, 70%, 70%);
+}
+
+.toe {
+  transform: translateY(1rem) translateX(-3rem);
+  color: hsla(50, 100%, 70%, 70%);
+}

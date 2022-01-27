@@ -1,3 +1,5 @@
+import './PlayerForm.css'
+
 function PlayerForm(props) {
   const updatePlayer = () => {
     const input = document.querySelector(`#${props.player.marker}_name`);
@@ -6,13 +8,18 @@ function PlayerForm(props) {
   }
 
   return (
-    <div>
+    <div className='PlayerForm'>
       <label htmlFor={props.player.marker + '_name'}>
         Player {props.player.marker === 'x' ? '1' : '2'} Name
       </label>
-      <input id={props.player.marker + '_name'} />
 
-      <button onClick={updatePlayer} />
+      <div className='input'>
+        <input id={props.player.marker + '_name'} />
+
+        <button onClick={updatePlayer}>
+          Done
+        </button>
+      </div>
     </div>
   );
 }
