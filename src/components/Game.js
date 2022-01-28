@@ -28,6 +28,7 @@ function Game()  {
   const reset = () => {
     setFirstPlayerName('');
     setSecondPlayerName('');
+    setAiMode(false);
 
     Board.reset();
   }

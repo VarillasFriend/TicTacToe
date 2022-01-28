@@ -17,6 +17,7 @@ button {
   border: none;
   outline: none;
   background-color: hsl(30, 90%, 60%);
+  color: black;
   font-size: 1.3rem;
   padding: 0.5rem 2rem 0.6rem 2rem;
   border-radius: 1.6rem;
@@ -27,4 +28,10 @@ button {
 button:hover, 
 button:focus {
   background-color: hsl(25, 95%, 55%);
+}
+
+@media only screen and (max-width: 50rem) {
+  body {
+    font-size: 1.3rem;
+  }
 }

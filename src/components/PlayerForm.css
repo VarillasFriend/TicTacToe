@@ -12,6 +12,7 @@ label {
 }
 
 .input {
+  box-sizing: border-box;
   background-color: white;
   width: fit-content;
   padding: 0.2rem;
@@ -27,9 +28,22 @@ input {
   outline: none;
   font-size: 1.3rem;
   padding: 0.6rem;
-  border-radius: 1rem;
+  border-radius: 1.6rem;
 }
 
 .ai-button {
   margin-top: 1rem;
+}
+
+@media only screen and (max-width: 40rem) {
+  .PlayerForm {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.5rem;
+  }
+
+  .input {
+    width: 100%;
+    display: flex;
+  }
 }
