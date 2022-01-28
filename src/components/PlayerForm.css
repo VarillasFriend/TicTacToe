@@ -30,21 +30,3 @@ input {
   border-radius: 1rem;
 }
 
-button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: none;
-  outline: none;
-  background-color: hsl(30, 90%, 60%);
-  font-size: 1.3rem;
-  padding: 0.5rem 2rem 0.6rem 2rem;
-  border-radius: 1.6rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-button:hover, 
-button:focus {
-  background-color: hsl(25, 95%, 55%);
-}

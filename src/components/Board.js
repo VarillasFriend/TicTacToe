@@ -1,12 +1,15 @@
 import Card from './Card'
+import Alert from './Alert'
 import React, { useState } from 'react';
 import './Board.css'
 
 function Board(props) {
-  const [marker, setMarker] = useState('x');
-  const [board, setBoard] = useState(['', '', '',
+  const [marker, setMarker] = useState('x'),
+        [board, setBoard] = useState(['', '', '',
                                       '', '', '',
-                                      '', '', ''])
+                                      '', '', '']),
+        [alert, setAlert] = useState(false),
+        [alertHtml, setAlertHtml] = useState(<div> </div>);
 
   const updateBoard = (index) => {
     let newMarker = marker === 'o' ? 'x' : 'o',
@@ -20,8 +23,10 @@ function Board(props) {
 
     if (winner && winner[0]) {
       if (winner[1] === '') {
-        alert('It\'s a tie') 
-        reset();
+        setTimeout(() => {
+          tieAlert();
+          reset()
+        }, 500);
         return;
       }
 
@@ -30,8 +35,10 @@ function Board(props) {
       winner = winner[1] === 'x' ? props.firstPlayer : props.secondPlayer
       props.incrementWins(winner);
         
-      alert(`${winner.name} won!`);
-      reset();
+      setTimeout(() => {
+        winAlert(winner.name);
+        reset()
+      }, 600);
     }
   }
 
@@ -70,6 +77,24 @@ function Board(props) {
     })
   }
 
+  const winAlert = (name) => {
+    setAlert(true);
+    setAlertHtml(
+      <Alert alert={name + ' won!'} closeAlert={closeAlert} />
+    );
+  }
+  
+  const tieAlert = (name) => {
+    setAlert(true);
+    setAlertHtml(
+      <Alert alert="It's a tie!" closeAlert={closeAlert} />
+    );
+  }
+
+  const closeAlert = () => {
+    setAlert(false);
+  }
+
   const reset = () => {
     setBoard(['', '', '',
               '', '', '',
@@ -90,6 +115,8 @@ function Board(props) {
       <Card index='6' board={board} updateBoard={updateBoard} />
       <Card index='7' board={board} updateBoard={updateBoard} />
       <Card index='8' board={board} updateBoard={updateBoard} />
+    
+      {alert ? alertHtml : ''}
     </div>
   );
 }

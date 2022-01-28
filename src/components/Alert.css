@@ -1,0 +1,25 @@
+.alert {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.inner-alert {
+  box-sizing: border;
+  padding: 1rem;
+  padding-top: 5rem;
+  background-color: white;
+  color: black;
+  border-radius: 1rem;
+  width: 40rem;
+  text-align: center;
+  margin: 6rem auto 0 auto;
+}
+
+.alert button {
+  display: block;
+  margin: 8rem auto 2rem auto;
+}
