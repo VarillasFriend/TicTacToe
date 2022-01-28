@@ -65,6 +65,7 @@ function Board(props) {
     array = array.map(index => document.getElementById(index));
 
     array.forEach((element) => {
+      element.classList.remove('left', 'top', 'right', 'bottom', 'center');
       element.classList.add('win-card');
     })
   }

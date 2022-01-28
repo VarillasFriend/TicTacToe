@@ -7,7 +7,6 @@
 }
 
 .win-card {
-
   animation: .6s win-card;
 }
 
@@ -22,6 +21,96 @@
 
   100% {
     transform: perspective(1rem) translateZ(0);
+  }
+}
+
+.left {
+  animation: 0.4s left;
+}
+
+@keyframes left {
+  0% {
+    transform: perspective(100rem) rotateY(0);
+  }
+
+  50% {
+    transform: perspective(100rem) rotateY(-20deg);
+  }
+
+  100% {
+    transform: perspective(100rem) rotateY(0);
+  }
+}
+
+.right {
+  animation: 0.4s right;
+}
+
+@keyframes right {
+  0% {
+    transform: perspective(100rem) rotateY(0);
+  }
+
+  50% {
+    transform: perspective(100rem) rotateY(20deg);
+  }
+
+  100% {
+    transform: perspective(100rem) rotateY(0);
+  }
+}
+
+.top {
+  animation: 0.4s top;
+}
+
+@keyframes top {
+  0% {
+    transform: perspective(100rem) rotateX(0);
+  }
+
+  50% {
+    transform: perspective(100rem) rotateX(20deg);
+  }
+
+  100% {
+    transform: perspective(100rem) rotateX(0);
+  }
+}
+
+.bottom {
+  animation: 0.4s bottom;
+}
+
+@keyframes bottom {
+  0% {
+    transform: perspective(100rem) rotateX(0);
+  }
+
+  50% {
+    transform: perspective(100rem) rotateX(-20deg);
+  }
+
+  100% {
+    transform: perspective(100rem) rotateX(0);
+  }
+}
+
+.center {
+  animation: 0.4s center;
+}
+
+@keyframes center {
+  0% {
+    transform: perspective(2rem) translateZ(0);
+  }
+
+  50% {
+    transform: perspective(2rem) translateZ(-0.1rem);
+  }
+
+  100% {
+    transform: perspective(2rem) translateZ(0);
   }
 }
 
