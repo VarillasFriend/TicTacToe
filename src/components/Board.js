@@ -19,11 +19,16 @@ function Board(props) {
     let winner = checkWinner();
 
     if (winner[0]) {
+      if (winner[1] === '') {
+        alert('It\'s a tie') 
+        reset();
+        return;
+      }
+
       winner = winner[1] === 'x' ? props.firstPlayer : props.secondPlayer
       props.incrementWins(winner);
         
       alert(`${winner.name} won!`)
- 
       reset();
     }
   }
@@ -45,6 +50,10 @@ function Board(props) {
          (board[2] === board[4] && board[2] === board[6] && board[2] !== '') ) {
       return [true, board[4]];
     }    
+    
+    if (!board.includes('')) {
+      return [true, '']
+    }
   }
 
   const reset = () => {

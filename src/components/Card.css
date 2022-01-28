@@ -4,3 +4,10 @@
   color: white;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
 }
+
+.card img {
+  display: block;
+  height: 100%;
+  width: auto;
+  margin: 0 auto 0 auto;
+}
