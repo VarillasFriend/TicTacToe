@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 function Card(props) {
   const changeMarker = (e) => {
     animateClick(e);
-    props.updateBoard(props.index);
+    props.makeMove(props.index);
   };
 
   const animateClick = (e) => {

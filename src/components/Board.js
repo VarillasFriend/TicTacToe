@@ -1,3 +1,4 @@
+import Ai from './Ai'
 import Card from './Card'
 import Alert from './Alert'
 import React, { useState } from 'react';
@@ -11,15 +12,20 @@ function Board(props) {
         [alert, setAlert] = useState(false),
         [alertHtml, setAlertHtml] = useState(<div> </div>);
 
-  const updateBoard = (index) => {
-    let newMarker = marker === 'o' ? 'x' : 'o',
-        newBoard  = board;
-    newBoard[index] = marker;
+  const updateBoard = (index, currentMarker) => {
+    let newBoard = board;
+    newBoard[index] = currentMarker;
 
-    setMarker(newMarker);
     setBoard(newBoard);
+  }
+
+  const makeMove = (index) => {
+    updateBoard(index, 'x');
+    setMarker(marker === 'o' ? 'x' : 'o');
+
+    aiMove();
     
-    let winner = checkWinner();
+    let winner = Ai.checkGameOver(board);
 
     if (winner && winner[0]) {
       if (winner[1] === '') {
@@ -39,33 +45,14 @@ function Board(props) {
         winAlert(winner.name);
         reset()
       }, 600);
+
+      return;
     }
   }
 
-  const checkWinner = () => {
-    for (let i = 0; i <= 6; i += 3) {
-      if (board[i] === board[i + 1] && board[i] === board[i + 2] && board[i] !== '') {
-        return [true, board[i], [i, i + 1, i + 2]];
-      }
-    }
-
-    for (let i = 0; i <= 2; i++) {
-      if  (board[i] === board[i + 3] && board[i] === board[i + 6] && board[i] !== '') {
-        return [true, board[i], [i, i + 3, i + 6]];
-      }
-    }
-
-    if (board[0] === board[4] && board[0] === board[8] && board[0] !== '') {
-      return [true, board[4], [0, 4, 8]];
-    }    
-    
-    if (board[2] === board[4] && board[2] === board[6] && board[2] !== '') {
-      return [true, board[4], [2, 4, 6]];
-    }    
-    
-    if (!board.includes('')) {
-      return [true, '']
-    }
+  const aiMove = () => {
+    updateBoard(Ai.findBestMove(board, Ai.checkGameOver), 'o');
+    setMarker(marker === 'o' ? 'x' : 'o');
   }
 
   const animateWin = (array) => {
@@ -104,17 +91,17 @@ function Board(props) {
 
   return (
     <div className='board'>
-      <Card index='0' board={board} updateBoard={updateBoard} />
-      <Card index='1' board={board} updateBoard={updateBoard} />
-      <Card index='2' board={board} updateBoard={updateBoard} />
+      <Card index='0' board={board} makeMove={makeMove} />
+      <Card index='1' board={board} makeMove={makeMove} />
+      <Card index='2' board={board} makeMove={makeMove} />
    
-      <Card index='3' board={board} updateBoard={updateBoard} />
-      <Card index='4' board={board} updateBoard={updateBoard} />
-      <Card index='5' board={board} updateBoard={updateBoard} />
+      <Card index='3' board={board} makeMove={makeMove} />
+      <Card index='4' board={board} makeMove={makeMove} />
+      <Card index='5' board={board} makeMove={makeMove} />
 
-      <Card index='6' board={board} updateBoard={updateBoard} />
-      <Card index='7' board={board} updateBoard={updateBoard} />
-      <Card index='8' board={board} updateBoard={updateBoard} />
+      <Card index='6' board={board} makeMove={makeMove} />
+      <Card index='7' board={board} makeMove={makeMove} />
+      <Card index='8' board={board} makeMove={makeMove} />
     
       {alert ? alertHtml : ''}
     </div>
