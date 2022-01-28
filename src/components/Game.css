@@ -3,3 +3,8 @@
   text-align: center;
   margin-bottom: 0.3rem;
 }
+
+.reset {
+  display: block;
+  margin: 0 auto 1rem auto;
+}

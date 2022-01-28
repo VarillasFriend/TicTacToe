@@ -30,8 +30,18 @@ function Game()  {
     return <PlayerForm player={secondPlayer} setName={setSecondPlayerName} />;
   }
 
+  const reset = () => {
+    setFirstPlayerName('');
+    setSecondPlayerName('');
+
+    Board.reset();
+  }
+
   return (
-    <div>
+    <div className='Game'>
+      <button className='reset' onClick={reset}>
+        Reset
+      </button>
       <div className='scoreboard'>
         {firstPlayer.name + ': ' + firstPlayer.wins + ' | '} 
         {secondPlayer.name + ': ' + secondPlayer.wins}
