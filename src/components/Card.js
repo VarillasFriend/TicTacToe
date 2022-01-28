@@ -12,7 +12,7 @@ function Card(props) {
       return;
     }
 
-    document.getElementById(props.index).classList.remove('clicked');
+    document.getElementById(props.index).classList.remove('clicked', 'win-card');
   })
 
   if (props.board[props.index] === 'x') {

@@ -1,8 +1,32 @@
 .card {
+  cursor: pointer;
   border-radius: 0.8rem;
   background-color: hsl(260, 30%, 40%);
-  color: white;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+  transition: transform 0.5s;
+}
+
+.win-card {
+
+  animation: .6s win-card;
+}
+
+@keyframes win-card {
+  0% {
+    transform: perspective(1rem) translateZ(0);
+  }
+
+  50% {
+    transform: perspective(1rem) translateZ(0.1rem);
+  }
+
+  100% {
+    transform: perspective(1rem) translateZ(0);
+  }
+}
+
+.clicked {
+  cursor: unset;
 }
 
 .icon {
@@ -37,10 +61,7 @@
 }
 
 .clicked .line2 {
-  animation: 1s draw-second-line;
-  animation-delay: 0.25s;
-  stroke-dasharray: 100 0;
-  animation-fill-mode: forwards;
+  animation: 1s 0.25s forwards draw-second-line;
 }
 
 @keyframes draw-second-line {

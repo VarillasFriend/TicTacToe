@@ -25,10 +25,12 @@ function Board(props) {
         return;
       }
 
+      animateWin(winner[2]);
+      
       winner = winner[1] === 'x' ? props.firstPlayer : props.secondPlayer
       props.incrementWins(winner);
         
-      alert(`${winner.name} won!`)
+      alert(`${winner.name} won!`);
       reset();
     }
   }
@@ -36,24 +38,35 @@ function Board(props) {
   const checkWinner = () => {
     for (let i = 0; i <= 6; i += 3) {
       if (board[i] === board[i + 1] && board[i] === board[i + 2] && board[i] !== '') {
-        return [true, board[i]];
+        return [true, board[i], [i, i + 1, i + 2]];
       }
     }
 
     for (let i = 0; i <= 2; i++) {
       if  (board[i] === board[i + 3] && board[i] === board[i + 6] && board[i] !== '') {
-        return [true, board[i]];
+        return [true, board[i], [i, i + 3, i + 6]];
       }
     }
 
-    if ( (board[0] === board[4] && board[0] === board[8] && board[0] !== '') ||
-         (board[2] === board[4] && board[2] === board[6] && board[2] !== '') ) {
-      return [true, board[4]];
+    if (board[0] === board[4] && board[0] === board[8] && board[0] !== '') {
+      return [true, board[4], [0, 4, 8]];
+    }    
+    
+    if (board[2] === board[4] && board[2] === board[6] && board[2] !== '') {
+      return [true, board[4], [2, 4, 6]];
     }    
     
     if (!board.includes('')) {
       return [true, '']
     }
+  }
+
+  const animateWin = (array) => {
+    array = array.map(index => document.getElementById(index));
+
+    array.forEach((element) => {
+      element.classList.add('win-card');
+    })
   }
 
   const reset = () => {
