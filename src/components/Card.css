@@ -5,9 +5,52 @@
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
 }
 
-.card img {
+.icon {
   display: block;
   height: 100%;
   width: auto;
   margin: 0 auto 0 auto;
+}
+
+.circle {
+  stroke-dasharray: 0 100;
+  transition: stroke-dasharray 1s;
+}
+
+.line1 {
+  stroke-dasharray: 0 100;
+  transition: stroke-dasharray 1s;
+}
+
+.line2 {
+  stroke-dasharray: 0 100;
+  visibility: hidden;
+  transition: stroke-dasharray 1s;
+}
+
+.clicked .circle {
+  stroke-dasharray: 100 0;
+}
+
+.clicked .line1 {
+  stroke-dasharray: 100 0;
+}
+
+.clicked .line2 {
+  animation: 1s draw-second-line;
+  animation-delay: 0.25s;
+  stroke-dasharray: 100 0;
+  animation-fill-mode: forwards;
+}
+
+@keyframes draw-second-line {
+  from {
+    visibility: visible;
+    stroke-dasharray: 0 100;
+  }
+
+  to {
+    visibility: visible;
+    stroke-dasharray: 100 0;
+  }
 }

@@ -32,7 +32,7 @@ function Game()  {
 
   return (
     <div>
-      <div class='scoreboard'>
+      <div className='scoreboard'>
         {firstPlayer.name + ': ' + firstPlayer.wins + ' | '} 
         {secondPlayer.name + ': ' + secondPlayer.wins}
       </div>

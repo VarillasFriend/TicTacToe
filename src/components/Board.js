@@ -18,7 +18,7 @@ function Board(props) {
     
     let winner = checkWinner();
 
-    if (winner[0]) {
+    if (winner && winner[0]) {
       if (winner[1] === '') {
         alert('It\'s a tie') 
         reset();
