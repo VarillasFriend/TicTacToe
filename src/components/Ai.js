@@ -1,5 +1,3 @@
-import Board from './Board'
-
 class Ai {
   static findBestMove(b, checkGameOver) {
     let bestVal = -1000,

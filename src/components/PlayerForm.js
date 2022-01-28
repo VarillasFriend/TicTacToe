@@ -7,6 +7,15 @@ function PlayerForm(props) {
     input.value = '';
   }
 
+  const setAiMode = () => {
+    props.setAiMode();
+  }
+
+  const aiButton = 
+    <button onClick={setAiMode} className='ai-button'>
+      Play Against Ai
+    </button>
+
   return (
     <div className='PlayerForm'>
       <label htmlFor={props.player.marker + '_name'}>
@@ -20,6 +29,8 @@ function PlayerForm(props) {
           Done
         </button>
       </div>
+
+      {props.player.marker === 'o' ? aiButton : ''}
     </div>
   );
 }

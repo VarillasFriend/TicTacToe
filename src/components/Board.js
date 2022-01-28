@@ -20,10 +20,12 @@ function Board(props) {
   }
 
   const makeMove = (index) => {
-    updateBoard(index, 'x');
+    updateBoard(index, props.aiMode ? 'x' : marker);
     setMarker(marker === 'o' ? 'x' : 'o');
-
-    aiMove();
+    
+    if (props.aiMode) {
+      aiMove();
+    }
     
     let winner = Ai.checkGameOver(board);
 

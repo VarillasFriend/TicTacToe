@@ -5,7 +5,8 @@ import PlayerForm from './PlayerForm'
 
 function Game()  {
   const [firstPlayer, setFirstPlayer] = useState({ name: '', marker: 'x', wins: 0 }),
-        [secondPlayer, setSecondPlayer] = useState({ name: 'AI', marker: 'o', wins: 0 });
+        [secondPlayer, setSecondPlayer] = useState({ name: '', marker: 'o', wins: 0 }),
+        [aiMode, setAiMode] = useState(false);
 
   const setFirstPlayerName = (name) => {
     setFirstPlayer({ name: name, marker: 'x', wins: 0 });
@@ -30,9 +31,16 @@ function Game()  {
 
     Board.reset();
   }
+
+  const setAiModeAndPlayer = () => {
+    setAiMode(true);
+    setSecondPlayerName('Ai');
+  }
   
   if (firstPlayer.name === '') {
     return <PlayerForm player={firstPlayer} setName={setFirstPlayerName} />;
+  } else if (secondPlayer.name === '') {
+    return <PlayerForm player={secondPlayer} setName={setSecondPlayerName} setAiMode={setAiModeAndPlayer} />;
   }
 
   return (
@@ -45,7 +53,7 @@ function Game()  {
         {secondPlayer.name + ': ' + secondPlayer.wins}
       </div>
 
-      <Board firstPlayer={firstPlayer} secondPlayer={secondPlayer} incrementWins={incrementWins} />
+      <Board firstPlayer={firstPlayer} secondPlayer={secondPlayer} incrementWins={incrementWins} aiMode={aiMode} />
     </div>
   );
 }
